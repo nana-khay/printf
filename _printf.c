@@ -5,6 +5,7 @@
 /**
  * _printf - Printf function
  * @format: format
+ * Return: conversions
  */
 
  int _printf(const char *format, ...)
@@ -47,6 +48,9 @@
                 case '%':
                     putchar('%');
                     count++;
+                    break;
+		case 'b':
+                    count += print_binary(args);
                     break;
                 default:
                     putchar('%');

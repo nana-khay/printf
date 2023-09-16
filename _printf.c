@@ -2,7 +2,12 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-int _printf(const char *format, ...)
+/**
+ * _printf - Printf function
+ * @format: format
+ */
+
+ int _printf(const char *format, ...)
 {
     va_list args;
     int count = 0;
@@ -34,6 +39,10 @@ int _printf(const char *format, ...)
                         str++;
                         count++;
                     }
+                    break;
+		case 'd':
+                case 'i':
+                    count += print_integer(args);
                     break;
                 case '%':
                     putchar('%');

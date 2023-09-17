@@ -1,129 +1,50 @@
-/*#include "main.h"
-#include <stdio.h>
-#include <stdarg.h>
-*/
+#include "main.h"
+
 /**
- * _printf - Printf function
- * @format: format
- * Return: conversions
+ * _printf - prints formatted data to stdout
+ * @format: string that contains the format to print
+ * Return: number of characters written
  */
-
-/* int _printf(const char *format, ...)
+int _printf(char *format, ...)
 {
-    va_list args;
-    int count = 0;
-    char c;
-    char *str;
+	int written = 0, (*structype)(char *, va_list);
+	char q[3];
+	va_list pa;
 
-    va_start(args, format);
-
-    while (*format)
-    {
-        if (*format == '%')
-        {
-            format++; 
-
-            switch (*format)
-            {
-                case 'c':
-                    c = va_arg(args, int);
-                    putchar(c);
-                    count++;
-                    break;
-                case 's':
-                    str = va_arg(args, char *);
-                    if (str == NULL)
-                        str = "(null)";
-                    while (*str)
-                    {
-                        putchar(*str);
-                        str++;
-                        count++;
-                    }
-                    break;
-		case 'd':
-                case 'i':
-                    count += print_integer(args);
-                    break;
-                case '%':
-                    putchar('%');
-                    count++;
-                    break;
-		case 'b':
-                    count += print_binary(args);
-                    break;
-                default:
-                    putchar('%');
-                    putchar(*format);
-                    count += 2;
-                    break;
-            }
-        }
-        else
-        {
-            putchar(*format);
-            count++;
-        }
-        format++;
-    }
-
-    va_end(args);
-    return count;
+	if (format == NULL)
+		return (-1);
+	q[2] = '\0';
+	va_start(pa, format);
+	_putchar(-1);
+	while (format[0])
+	{
+		if (format[0] == '%')
+		{
+			structype = driver(format);
+			if (structype)
+			{
+				q[0] = '%';
+				q[1] = format[1];
+				written += structype(q, pa);
+			}
+			else if (format[1] != '\0')
+			{
+				written += _putchar('%');
+				written += _putchar(format[1]);
+			}
+			else
+			{
+				written += _putchar('%');
+				break;
+			}
+			format += 2;
+		}
+		else
+		{
+			written += _putchar(format[0]);
+			format++;
+		}
+	}
+	_putchar(-2);
+	return (written);
 }
-*/
-#include "lists.h"
-/**
- * _printf - Custom printf function implementation
- * @format: The format string containing placeholders
- * @...: Additional arguments for placeholders
- *
- * Description: This function simulates the behavior of the printf function
- *
- * Return: The total count of characters printed.
- */
-
-
-int _printf(const char *format, ...)
-{
-        int cnt = 0;
-        int i = 0;
-        va_list args;
-
-        va_start(args, format);
-
-        while (format[i] != '\0')
-        {
-                cnt++;
-                if (format[i] == '%')
-                {
-                        if (format[i + 1] == '%')
-                        {
-
-                        }
-                        if (format[i + 1] != '\0')
-                        {
-                                int (*function)(va_list) = decision(format[i + 1]);
-
-                                if (function != NULL)
-                                {
-                                        /*cnt +=*/
-                                        function(args);
-                                        i++;
-                                }
-                                else
-                                {
-                                        _putchar(format[i]);
-                                        /*cnt++;*/
-                                }
-                        }
-                }
-                else
-                {
-                        _putchar(format[i]);            }
-                i++;
-        }
-
-        va_end(args);
-        return (cnt);
-}
-~

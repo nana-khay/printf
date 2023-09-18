@@ -16,7 +16,7 @@
 typedef struct convert_match
 {
     char *id;
-    int (*f)(va_list, char[], int, int, int, int);
+    int (*f)(va_list);
 } convert_match;
 
 int print_pointer(va_list val);

@@ -1,6 +1,9 @@
 #include "main.h"
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> printf2
 /**
  * _printf - A function for formatted printing, determining the correct format.
  * @format: The format string to process.
@@ -18,6 +21,7 @@ int _printf(const char * const format, ...)
 		{"%o", print_octal}, {"%x", print_hex}, {"%X", print_HEX},
 		{"%S", print_special_string}, {"%p", print_pointer}
 	};
+<<<<<<< HEAD
 
 	va_list args;
 	int i = 0, j, length = 0;
@@ -27,16 +31,36 @@ int _printf(const char * const format, ...)
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
+=======
+
+	va_list args; 
+	int i = 0, j, length = 0;
+
+	va_start(args, format); 
+
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+		return (-1);
+
+>>>>>>> printf2
 	while (format[i] != '\0')
 	{
 		j = 13;
 		while (j >= 0)
 		{
+<<<<<<< HEAD
 			if (format_specifiers[j].id[0] == format[i] && format_specifiers[j].id[1] == format[i + 1])
 			{
 				length += format_specifiers[j].f(args);
 				i = i + 2;
 				goto Continue;
+=======
+
+			if (format_specifiers[j].id[0] == format[i] && format_specifiers[j].id[1] == format[i + 1])
+			{
+				length += format_specifiers[j].f(args); 
+				i = i + 2; 
+				goto Continue; 
+>>>>>>> printf2
 			}
 			j--;
 		}
@@ -47,7 +71,13 @@ int _printf(const char * const format, ...)
 Continue:
 		continue;
 	}
+<<<<<<< HEAD
 	va_end(args);
 	return (length);
-}
+=======
 
+	va_end(args); 
+	return (length);
+
+>>>>>>> printf2
+}

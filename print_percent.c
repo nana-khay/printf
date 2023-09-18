@@ -1,15 +1,11 @@
 #include "main.h"
 
 /**
- * printpercent - prints %
- * @format: format
- * @pa: va_list
- * Return: number of characters printed
+ * print_percent - Print the percent sign character '%' to stdout.
+ * Return: 1 to indicate success.
  */
-int printpercent(char *format, va_list pa)
+int print_percent(void)
 {
-	(void)format;
-	(void)pa;
-	_putchar('%');
-	return (1);
+    _putchar('%');
+    return (1);
 }

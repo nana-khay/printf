@@ -1,19 +1,38 @@
 #include "main.h"
 
 /**
- * printstr - prints string.
- * @pa: gtgtg
- * @format: format str.
- * Return: number of  string for print.
+ * print_string - Print a string.
+ * @val: Argument.
+ * Return: The length of the string.
  */
-int printstr(char *format, va_list pa)
+int print_string(va_list val)
 {
-	char *string = va_arg(pa, char *);
-	int contador;
-	(void)format;
+    char *inputString;
+    int i, length;
 
-	if (string == NULL)
-		string = "(null)";
-	contador = _puts(string);
-	return (contador);
+    inputString = va_arg(val, char *);
+
+    if (inputString == NULL)
+    {
+        inputString = "(null)";
+        length = getStringLength(inputString);
+
+        for (i = 0; i < length; i++)
+        {
+            _putchar(inputString[i]);
+        }
+
+        return length;
+    }
+    else
+    {
+        length = getStringLength(inputString);
+
+        for (i = 0; i < length; i++)
+        {
+            _putchar(inputString[i]);
+        }
+
+        return length;
+    }
 }

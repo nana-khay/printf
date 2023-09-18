@@ -1,26 +1,25 @@
 #include "main.h"
 
 /**
- * print_hex - Prints a hexadecimal number.
- * @val: Arguments.
+ * print_hex_aux - Prints a hexadecimal number.
+ * @num: Argument.
  * Return: The count of printed hexadecimal digits.
  */
-int print_hex(va_list val)
+int print_hex_aux(unsigned long int num)
 {
-    int i;
-    int *hexDigits;
-    int digitCount = 0;
-    unsigned int number = va_arg(val, unsigned int);
-    unsigned int temp = number;
+    long int i;
+    long int *hexDigits;
+    long int digitCount = 0;
+    unsigned long int temp = num;
 
-    while (number / 16 != 0)
+    while (num / 16 != 0)
     {
-        number /= 16;
+        num /= 16;
         digitCount++;
     }
     digitCount++;
 
-    hexDigits = malloc(digitCount * sizeof(int));
+    hexDigits = malloc(digitCount * sizeof(long int));
 
     for (i = 0; i < digitCount; i++)
     {
@@ -33,7 +32,7 @@ int print_hex(va_list val)
         if (hexDigits[i] > 9)
             hexDigits[i] = hexDigits[i] + 39;
 
-            _putchar(hexDigits[i] + '0');
+          _putchar(hexDigits[i] + '0');
     }
 
     free(hexDigits);

@@ -1,14 +1,15 @@
 #include "main.h"
 
 /**
- * printc - prints a char.
- * @pa: format of char.
- * @format: format
- * Return: number char for printf.
+ * print_char - Prints a character.
+ * @val: Arguments.
+ * Return: The count of printed characters, which is always 1.
  */
-int printc(char *format, va_list pa)
+int print_char(va_list val)
 {
-	(void)format;
-	_putchar(va_arg(pa, int));
-	return (1);
+	char character;
+
+	character = va_arg(val, int);
+	_putchar(character);
+	return 1;
 }

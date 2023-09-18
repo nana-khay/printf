@@ -1,76 +1,96 @@
 #include "main.h"
+
 /**
- * _abs - calculates the absolute value.
- * @number: input.
- * Return: value.
+ * print_integer - Prints an integer.
+ * @args: Argument to print.
+ * Return: The number of characters printed.
  */
-int _abs(int number)
+int print_integer(va_list args)
 {
-	if (number < 0)
-		return (-1 * number);
-	else
-		return (number);
+    int number = va_arg(args, int);
+    int lastDigit = number % 10, digit, exponent = 1;
+    int charCount = 1;
+    int temp = number;
+
+    number = number / 10;
+
+    if (lastDigit < 0)
+    {
+        _putchar('-');
+        temp = -temp;
+        number = -number;
+        lastDigit = -lastDigit;
+        charCount++;
+    }
+
+    if (number > 0)
+    {
+        while (number / 10 != 0)
+        {
+            exponent = exponent * 10;
+            number = number / 10;
+        }
+
+        number = temp;
+
+        while (exponent > 0)
+        {
+            digit = number / exponent;
+            _putchar(digit + '0');
+            number = number - (digit * exponent);
+            exponent = exponent / 10;
+            charCount++;
+        }
+    }
+
+    _putchar(lastDigit + '0');
+    return charCount;
 }
 
 /**
- * contadordigit - counts the digits.
- * @number: input integer
- * Return: digit count
+ * print_decimal - Prints a decimal number.
+ * @args: Argument to print.
+ * Return: The number of characters printed.
  */
-int contadordigit(int number)
+int print_decimal(va_list args)
 {
-	int count = 0;
-	int number2 = number;
+    int number = va_arg(args, int);
+    int lastDigit = number % 10, digit;
+    int charCount = 1;
+    int exponent = 1;
+    int temp = number;
 
-	if (number <= 0)
-		count += 1;
+    number = number / 10;
 
-	while (_abs(number2) != 0)
-	{
-		number2 = number2 / 10;
-		count++;
-	}
-	return (count);
-}
-/**
- * integer - a function that prints an integer.
- * @number: input integer
- * Return: digit count
- */
-int integer(int number)
-{
-	unsigned int unint;
-	int count;
+    if (lastDigit < 0)
+    {
+        _putchar('-');
+        temp = -temp;
+        number = -number;
+        lastDigit = -lastDigit;
+        charCount++;
+    }
 
-	count = contadordigit(number);
-if (number < 0)
-{
-_putchar('-');
-unint = -number;
-}
-	else
-		unint = number;
+    if (number > 0)
+    {
+        while (number / 10 != 0)
+        {
+            exponent = exponent * 10;
+            number = number / 10;
+        }
 
-	if (unint >= 10)
-		integer(unint / 10);
-	_putchar(unint % 10 + '0');
+        number = temp;
 
-	return (count);
-}
+        while (exponent > 0)
+        {
+            digit = number / exponent;
+            _putchar(digit + '0');
+            number = number - (digit * exponent);
+            exponent = exponent / 10;
+            charCount++;
+        }
+    }
 
-/**
- * printint - prints a number
- * @format: format to print number
- * @pa: va_list with number to print
- * Return: number of characters printed
- */
-int printint(char *format, va_list pa)
-{
-	int number = va_arg(pa, int);
-	int numero;
-	(void)format;
-
-	numero = integer(number);
-
-	return (numero);
+    _putchar(lastDigit + '0');
+    return charCount;
 }

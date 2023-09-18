@@ -1,4 +1,4 @@
-#ifndef MAIN_H
+/**#ifndef MAIN_H
 #define MAIN_H
 
 #include <stdio.h>
@@ -7,11 +7,10 @@
 #include <limits.h>
 #include <unistd.h>
 
-/**
  * struct convert_match - match the conversion specifiers for custom_printf
  * @id: a string representing the specifier, e.g., "%d", "%s"
  * @f: a function pointer for the conversion specifier
- */
+ 
 
 typedef struct convert_match
 {
@@ -42,3 +41,18 @@ int _putchar(char ch);
 int _printf(const char *format, ...);
 
 #endif
+*/
+
+
+
+
+#ifndef MAIN_H
+#define MAIN_H
+
+#include <stdarg.h>  // For variable argument handling
+
+/* Function prototypes */
+int _printf(const char *format, ...);
+int _putchar(char c);
+
+#endif /* MAIN_H */
